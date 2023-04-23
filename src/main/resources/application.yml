@@ -15,6 +15,8 @@ spring:
 ---
 
 spring:
+  profiles:
+    active: prod
   datasource:
     url: jdbc:postgresql://localhost:5432/car_repair_shop?currentSchema=production
     username: postgres
