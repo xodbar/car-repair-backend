@@ -30,18 +30,18 @@ public class BillGeneratorService {
 
                 writer.write("Client full name: " + client.firstName() + " " + client.lastName() + "\n");
                 writer.write("Client contact: " + client.phone() + "\n");
-                writer.write("Vehicle: " + vehicle.modelName() + ", " + vehicle.licensePlate());
+                writer.write("Vehicle: " + vehicle.modelName() + ", " + vehicle.licensePlate() + "\n");
                 writer.write("Implementor: " + employee.firstName() + " " + employee.lastName() + ", " + employee.employeeGrade().name() + " \n");
-                writer.write("Planned end date: " + work.plannedEndDate().toString());
+                writer.write("Planned end date: " + work.plannedEndDate().toString() + "\n");
 
                 writer.write("-----------------------" + "\n");
 
                 writer.write("Initial price: " + initialRequest.initialPrice() + "T\n");
                 writer.write("Work category mismatch: " + billPrices.workCategoryMismatch + "T (10%)\n");
                 writer.write("Vehicle category mismatch: " + billPrices.vehicleCategoryMismatch + "T (10%)\n");
-                writer.write("Vehicle category cost: " + billPrices.vehicleCategoryCost + "T\n");
-                writer.write("Employee grade cost: " + billPrices.employeeGradeCost + "T\n");
-                writer.write("Client category discount: -" + billPrices.clientCategoryDiscount + "T\n");
+                writer.write("Vehicle category cost: " + billPrices.vehicleCategoryCost + "T (" + vehicle.vehicleCategory().additionalCost() + "%)\n");
+                writer.write("Employee grade cost: " + billPrices.employeeGradeCost + "T (" + employee.employeeGrade().getAdditionalGradePercent() + "%)\n");
+                writer.write("Client category discount: -" + billPrices.clientCategoryDiscount + "T (-" + client.clientCategory().discount() + "%)\n");
 
                 writer.write("-----------------------" + "\n");
 

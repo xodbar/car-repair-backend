@@ -74,11 +74,11 @@ public class RegisterWorkUseCase implements UseCase<RegisterWorkUseCase.Input, R
         if (!Objects.equals(vehicle.vehicleCategory().id(), employee.specializedVehicleCategory().id()))
             vehicleCategoryMismatch = (int) Math.round(totalPrice * 0.1);
 
-        employeeGradeCost = totalPrice * (employee.employeeGrade().getAdditionalGradePercent() / 100);
-        vehicleCategoryCost = totalPrice * (vehicle.vehicleCategory().additionalCost() / 100);
+        employeeGradeCost = (totalPrice * employee.employeeGrade().getAdditionalGradePercent()) / 100;
+        vehicleCategoryCost = (totalPrice * vehicle.vehicleCategory().additionalCost()) / 100;
         totalPrice = totalPrice + (workCategoryMismatch + vehicleCategoryMismatch + employeeGradeCost + vehicleCategoryCost);
 
-        clientCategoryDiscount = totalPrice * (vehicle.owner().clientCategory().discount() / 100);
+        clientCategoryDiscount = (totalPrice * vehicle.owner().clientCategory().discount()) / 100;
 
         int totalPriceAfterDiscount = totalPrice - clientCategoryDiscount;
 
