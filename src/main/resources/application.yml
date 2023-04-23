@@ -1,0 +1,23 @@
+server:
+  port: 7777
+
+---
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:postgresql://localhost:5432/car_repair_shop?currentSchema=develop
+    username: postgres
+    password: postgres
+  flyway:
+    default-schema: develop
+
+---
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/car_repair_shop?currentSchema=production
+    username: postgres
+    password: postgres
+  flyway:
+    default-schema: production
