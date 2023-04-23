@@ -21,7 +21,10 @@ public class ClientCategoryServiceImpl implements ClientCategoryService {
 
     @Override
     public ClientCategory getByName(String name) {
-        return clientCategoryRepository.findByName(name).toDto();
+        if (clientCategoryRepository.findByName(name) != null)
+            return clientCategoryRepository.findByName(name).toDto();
+
+        return null;
     }
 
     @Override

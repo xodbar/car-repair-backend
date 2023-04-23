@@ -33,7 +33,7 @@ public class ClientCategoryModel {
     }
 
     public ClientCategory toDto() {
-        return new ClientCategory(id, name);
+        return new ClientCategory(id, name, discount);
     }
 
     public Long getId() {

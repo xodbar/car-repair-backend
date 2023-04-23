@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public record ClientCategory(
         Long id,
-        String name
+        String name,
+        Integer discount
 ) implements Serializable {
 }

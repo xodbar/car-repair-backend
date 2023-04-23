@@ -9,6 +9,7 @@ import app.core.domain.client.repo.ClientRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ClientServiceImpl implements ClientService {
@@ -38,21 +39,54 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client getById(Long id) {
-        if ()
+        if (clientRepository.findById(id).isPresent())
+            return clientRepository.findById(id).get().toDto();
+
+        return null;
     }
 
     @Override
     public ClientModel getModelById(Long id) {
-        return null;
+        return clientRepository.findById(id).orElseThrow();
     }
 
     @Override
     public Client getByPhone(String phone) {
+        if (clientRepository.findByPhone(phone) != null)
+            return clientRepository.findByPhone(phone).toDto();
+
         return null;
     }
 
     @Override
-    public Client update(String firstName, String lastName, String phone, ClientCategory clientCategory) {
-        return null;
+    public List<Client> getAll() {
+        return clientRepository.findAll()
+                .stream()
+                .map(ClientModel::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Client update(Long id, String firstName, String lastName, String phone, ClientCategory clientCategory) {
+        if (getById(id) == null)
+            return null;
+
+        ClientModel clientModel = getModelById(id);
+        ClientCategoryModel clientCategoryModel = clientCategory == null ? null :
+                clientCategoryService.getModelById(clientCategory.id());
+
+        if (firstName != null && !firstName.isEmpty())
+            clientModel.setFirstName(firstName);
+
+        if (lastName != null && !lastName.isEmpty())
+            clientModel.setLastName(lastName);
+
+        if (phone != null && !phone.isEmpty())
+            clientModel.setPhone(phone);
+
+        if (clientCategoryModel != null)
+            clientModel.setClientCategory(clientCategoryModel);
+
+        return clientRepository.save(clientModel).toDto();
     }
 }

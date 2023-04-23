@@ -9,6 +9,9 @@ import app.core.domain.vehicle.model.VehicleModel;
 import app.core.domain.vehicle.repo.VehicleRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class VehicleServiceImpl implements VehicleService {
 
@@ -49,7 +52,23 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public Vehicle getByLicensePlate(String licensePlate) {
-        return vehicleRepository.findByLicensePlate(licensePlate).toDto();
+        if (vehicleRepository.findByLicensePlate(licensePlate) != null)
+            return vehicleRepository.findByLicensePlate(licensePlate).toDto();
+
+        return null;
+    }
+
+    @Override
+    public List<Vehicle> getAllVehicles() {
+        return vehicleRepository.findAll()
+                .stream()
+                .map(VehicleModel::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public VehicleModel getModelById(Long id) {
+        return vehicleRepository.findById(id).orElseThrow();
     }
 
     @Override
@@ -59,7 +78,7 @@ public class VehicleServiceImpl implements VehicleService {
         if (ownerId != null)
             vehicleModel.setOwner(clientService.getModelById(id));
 
-        if (licensePlate != null)
+        if (licensePlate != null && !licensePlate.isEmpty())
             vehicleModel.setLicensePlate(licensePlate);
 
         return vehicleRepository.save(vehicleModel).toDto();

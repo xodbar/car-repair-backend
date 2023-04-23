@@ -1,4 +1,4 @@
-package app.core.domain.work.category;
+package app.core.domain.work.category.dto;
 
 import java.io.Serializable;
 

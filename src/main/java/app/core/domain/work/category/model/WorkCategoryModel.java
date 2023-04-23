@@ -1,6 +1,7 @@
-package app.core.domain.work.category;
+package app.core.domain.work.category.model;
 
-import app.core.domain.employee.EmployeeModel;
+import app.core.domain.employee.model.EmployeeModel;
+import app.core.domain.work.category.dto.WorkCategory;
 import jakarta.persistence.*;
 
 import java.util.List;

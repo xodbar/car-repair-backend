@@ -1,8 +1,9 @@
-package app.core.domain.employee;
+package app.core.domain.employee.model;
 
+import app.core.domain.employee.dto.Employee;
 import app.core.domain.employee.grade.EmployeeGrade;
 import app.core.domain.vehicle.category.VehicleCategoryModel;
-import app.core.domain.work.category.WorkCategoryModel;
+import app.core.domain.work.category.model.WorkCategoryModel;
 import jakarta.persistence.*;
 
 @Entity
@@ -48,6 +49,19 @@ public class EmployeeModel {
         this.specializedWorkCategory = specializedWorkCategory;
         this.specializedVehicleCategory = specializedVehicleCategory;
         this.isActive = isActive;
+    }
+
+    public Employee toDto() {
+        return new Employee(
+                id,
+                firstName,
+                lastName,
+                avatarUrl,
+                employeeGrade,
+                specializedWorkCategory.toDto(),
+                specializedVehicleCategory.toDto(),
+                isActive
+        );
     }
 
     public Long getId() {

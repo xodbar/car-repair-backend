@@ -1,8 +1,9 @@
-package app.core.domain.work;
+package app.core.domain.work.model;
 
-import app.core.domain.employee.EmployeeModel;
+import app.core.domain.employee.model.EmployeeModel;
 import app.core.domain.vehicle.model.VehicleModel;
-import app.core.domain.work.category.WorkCategoryModel;
+import app.core.domain.work.category.model.WorkCategoryModel;
+import app.core.domain.work.dto.Work;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -46,6 +47,18 @@ public class WorkModel {
         this.employee = employee;
         this.totalPrice = totalPrice;
         this.plannedEndDate = plannedEndDate;
+    }
+
+    public Work toDto() {
+        return new Work(
+                id,
+                workCategory.toDto(),
+                vehicle.toDto(),
+                employee.toDto(),
+                totalPrice,
+                plannedEndDate,
+                actualEndDate
+        );
     }
 
     public Long getId() {

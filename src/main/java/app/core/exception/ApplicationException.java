@@ -1,4 +1,4 @@
-package app.core.domain.work.exception;
+package app.core.exception;
 
 import org.springframework.http.HttpStatus;
 
@@ -10,7 +10,12 @@ public class ApplicationException extends Exception {
         this.httpStatus = httpStatus;
     }
 
+    public ApplicationException(String message, Throwable cause, HttpStatus httpStatus) {
+        super(message, cause);
+        this.httpStatus = httpStatus;
+    }
+
     public HttpStatus getHttpStatus() {
-        return httpStatus;
+        return httpStatus == null ? HttpStatus.INTERNAL_SERVER_ERROR : httpStatus;
     }
 }

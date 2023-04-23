@@ -1,6 +1,6 @@
 package app.core.domain.vehicle.category;
 
-import app.core.domain.employee.EmployeeModel;
+import app.core.domain.employee.model.EmployeeModel;
 import app.core.domain.vehicle.model.VehicleModel;
 import jakarta.persistence.*;
 
