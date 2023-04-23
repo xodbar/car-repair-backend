@@ -11,6 +11,8 @@ import app.core.domain.work.dto.Work;
 import app.core.domain.work.service.WorkService;
 import app.core.exception.ApplicationException;
 import app.core.useCase.UseCase;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
@@ -107,10 +109,16 @@ public class RegisterWorkUseCase implements UseCase<RegisterWorkUseCase.Input, R
     }
 
     public record Input(
+            @NotNull
             Long workCategoryId,
+            @NotNull
             Long vehicleId,
+            @NotNull
             Long employeeId,
+            @NotNull
+            @Min(100)
             Integer initialPrice,
+            @NotNull
             LocalDate plannedEndDate
     ) {
     }

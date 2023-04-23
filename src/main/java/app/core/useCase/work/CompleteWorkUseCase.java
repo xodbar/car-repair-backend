@@ -4,6 +4,7 @@ import app.core.domain.work.dto.Work;
 import app.core.domain.work.service.WorkService;
 import app.core.exception.ApplicationException;
 import app.core.useCase.UseCase;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
@@ -39,7 +40,9 @@ public class CompleteWorkUseCase implements UseCase<CompleteWorkUseCase.Input, C
     }
 
     public record Input(
+            @NotNull
             Long workId,
+            @NotNull
             LocalDate actualEndDate
     ) {
     }

@@ -6,6 +6,7 @@ import app.core.domain.client.dto.Client;
 import app.core.domain.client.service.ClientService;
 import app.core.exception.ApplicationException;
 import app.core.useCase.UseCase;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,10 +51,15 @@ public class UpdateClientUseCase implements UseCase<UpdateClientUseCase.Input, U
     }
 
     public record Input(
+            @NotNull
             Long id,
+            @NotNull
             String firstName,
+            @NotNull
             String lastName,
+            @NotNull
             String phone,
+            @NotNull
             Long clientCategoryId
     ) {
     }

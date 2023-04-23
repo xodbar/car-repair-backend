@@ -8,6 +8,8 @@ import app.core.domain.vehicle.dto.Vehicle;
 import app.core.domain.vehicle.service.VehicleService;
 import app.core.exception.ApplicationException;
 import app.core.useCase.UseCase;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,10 +61,16 @@ public class AddVehicleUseCase implements UseCase<AddVehicleUseCase.Input, AddVe
     }
 
     public record Input(
+            @NotNull
             String modelName,
+            @NotNull
             Long vehicleCategoryId,
+            @NotNull
             Long ownerId,
+            @NotNull
             String licensePlate,
+            @NotNull
+            @Min(1970)
             Integer issueYear
     ) {
     }

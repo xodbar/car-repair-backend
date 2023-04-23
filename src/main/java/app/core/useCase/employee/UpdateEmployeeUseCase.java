@@ -9,6 +9,7 @@ import app.core.domain.work.category.dto.WorkCategory;
 import app.core.domain.work.category.service.WorkCategoryService;
 import app.core.exception.ApplicationException;
 import app.core.useCase.UseCase;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,6 +60,7 @@ public class UpdateEmployeeUseCase implements UseCase<UpdateEmployeeUseCase.Inpu
     }
 
     public record Input(
+            @NotNull
             Long id,
             String firstName,
             String lastName,

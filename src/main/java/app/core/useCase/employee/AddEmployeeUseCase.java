@@ -9,6 +9,7 @@ import app.core.domain.work.category.dto.WorkCategory;
 import app.core.domain.work.category.service.WorkCategoryService;
 import app.core.exception.ApplicationException;
 import app.core.useCase.UseCase;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,11 +54,17 @@ public class AddEmployeeUseCase implements UseCase<AddEmployeeUseCase.Input, Add
     }
 
     public record Input(
+            @NotNull
             String firstName,
+            @NotNull
             String lastName,
+            @NotNull
             String avatarUrl,
+            @NotNull
             EmployeeGrade employeeGrade,
+            @NotNull
             Long specializedWorkCategoryId,
+            @NotNull
             Long specializedVehicleCategoryId
     ) {
     }
