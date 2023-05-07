@@ -18,12 +18,12 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @ExceptionHandler(value = {Exception.class})
-    protected ResponseEntity<Exception> handleException(Exception e) {
+    protected ResponseEntity<ApplicationException> handleException(Exception e) {
         logger.error("Failed to handle request: " + e.getLocalizedMessage(), e);
 
         HttpStatus httpStatus = e instanceof ApplicationException ?
                 ((ApplicationException) e).getHttpStatus() : HttpStatus.INTERNAL_SERVER_ERROR;
 
-        return ResponseEntity.status(httpStatus).body(e);
+        return ResponseEntity.status(httpStatus).body(new ApplicationException(e.getMessage(), httpStatus));
     }
 }

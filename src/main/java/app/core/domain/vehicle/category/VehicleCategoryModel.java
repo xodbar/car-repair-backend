@@ -62,4 +62,12 @@ public class VehicleCategoryModel {
     public void setAdditionalCost(Integer additionalCost) {
         this.additionalCost = additionalCost;
     }
+
+    public List<EmployeeModel> getSpecializedEmployees() {
+        return specializedEmployees;
+    }
+
+    public List<VehicleModel> getVehicles() {
+        return vehicles;
+    }
 }
