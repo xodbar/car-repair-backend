@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Component
@@ -72,9 +73,11 @@ public class AddVehicleUseCase implements UseCase<AddVehicleUseCase.Input, AddVe
             @NotNull
             @Min(1970)
             Integer issueYear
-    ) {
+    ) implements Serializable {
     }
 
-    public record Output(Vehicle vehicle) {
+    public record Output(
+            Vehicle vehicle
+    ) implements Serializable {
     }
 }

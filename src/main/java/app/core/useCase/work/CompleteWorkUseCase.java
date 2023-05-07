@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Component
@@ -44,9 +45,11 @@ public class CompleteWorkUseCase implements UseCase<CompleteWorkUseCase.Input, C
             Long workId,
             @NotNull
             LocalDate actualEndDate
-    ) {
+    ) implements Serializable {
     }
 
-    public record Output(Work work) {
+    public record Output(
+            Work work
+    ) implements Serializable {
     }
 }

@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
+
 @Component
 public class UpdateEmployeeUseCase implements UseCase<UpdateEmployeeUseCase.Input, UpdateEmployeeUseCase.Output> {
 
@@ -68,9 +70,11 @@ public class UpdateEmployeeUseCase implements UseCase<UpdateEmployeeUseCase.Inpu
             EmployeeGrade employeeGrade,
             Long specializedWorkCategoryId,
             Long specializedVehicleCategoryId
-    ) {
+    ) implements Serializable {
     }
 
-    public record Output(Employee employee) {
+    public record Output(
+            Employee employee
+    ) implements Serializable {
     }
 }

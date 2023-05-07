@@ -7,6 +7,8 @@ import app.core.useCase.UseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 @Component
 public class AddClientCategoryUseCase implements UseCase<AddClientCategoryUseCase.Input, AddClientCategoryUseCase.Output> {
 
@@ -30,11 +32,11 @@ public class AddClientCategoryUseCase implements UseCase<AddClientCategoryUseCas
     public record Input(
             String name,
             Integer discountInPercents
-    ) {
+    ) implements Serializable {
     }
 
     public record Output(
             ClientCategory clientCategory
-    ) {
+    ) implements Serializable {
     }
 }

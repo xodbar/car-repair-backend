@@ -7,6 +7,8 @@ import app.core.useCase.UseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 @Component
 public class AddWorkCategoryUseCase implements UseCase<AddWorkCategoryUseCase.Input, AddWorkCategoryUseCase.Output> {
 
@@ -26,11 +28,11 @@ public class AddWorkCategoryUseCase implements UseCase<AddWorkCategoryUseCase.In
 
     public record Input(
             String name
-    ) {
+    ) implements Serializable {
     }
 
     public record Output(
             WorkCategory workCategory
-    ) {
+    ) implements Serializable {
     }
 }

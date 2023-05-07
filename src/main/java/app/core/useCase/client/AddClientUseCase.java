@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
+
 @Component
 public class AddClientUseCase implements UseCase<AddClientUseCase.Input, AddClientUseCase.Output> {
 
@@ -50,9 +52,11 @@ public class AddClientUseCase implements UseCase<AddClientUseCase.Input, AddClie
             String phone,
             @NotNull
             Long clientCategoryId
-    ) {
+    ) implements Serializable {
     }
 
-    public record Output(Client client) {
+    public record Output(
+            Client client
+    ) implements Serializable {
     }
 }

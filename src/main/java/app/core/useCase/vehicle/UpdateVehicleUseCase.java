@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
+
 @Component
 public class UpdateVehicleUseCase implements UseCase<UpdateVehicleUseCase.Input, UpdateVehicleUseCase.Output> {
 
@@ -46,9 +48,11 @@ public class UpdateVehicleUseCase implements UseCase<UpdateVehicleUseCase.Input,
             Long id,
             Long ownerId,
             String licensePlate
-    ) {
+    ) implements Serializable {
     }
 
-    public record Output(Vehicle vehicle) {
+    public record Output(
+            Vehicle vehicle
+    ) implements Serializable {
     }
 }

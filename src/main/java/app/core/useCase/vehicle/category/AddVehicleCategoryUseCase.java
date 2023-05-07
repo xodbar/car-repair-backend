@@ -7,6 +7,8 @@ import app.core.useCase.UseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 @Component
 public class AddVehicleCategoryUseCase implements UseCase<AddVehicleCategoryUseCase.Input, AddVehicleCategoryUseCase.Output> {
 
@@ -30,11 +32,11 @@ public class AddVehicleCategoryUseCase implements UseCase<AddVehicleCategoryUseC
     public record Input(
             String name,
             Integer additionalPercent
-    ) {
+    ) implements Serializable {
     }
 
     public record Output(
             VehicleCategory vehicleCategory
-    ) {
+    ) implements Serializable {
     }
 }
